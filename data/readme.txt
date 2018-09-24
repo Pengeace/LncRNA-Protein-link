@@ -1,6 +1,5 @@
-Diseaseinflist.csvÖÐº¬ÓÐ¼²²¡Ãû×ÖºÍIDµÄ¶ÔÓ¦£»
-lncRNA-GeneÓÐÁ½¸öcsv,Ò»¸öÒÑ¾­×ª»»³ÉÏëÒªµÄ0»òÕß1µÄÐÎÊ½£¬ÁíÒ»¸öÊÇÔ­Ê¼ÎÄ¼þ£»
-lncRNA-GENE-DiseaseµÄÈý¸öÊý¾ÝÓÃdeepwalkÏÈµÃµ½ÌØÕ÷£¬
-Ä¿µÄÊÇÒªÕÒµ½lncRNA-GENE(PROTEIN)¹ØÁª£¬
-½«ÌØÕ÷·Åµ½Èý¸ö·ÖÀàÆ÷ÖÐÊµÏÖ¹ØÁªÔ¤²â£¬
-·Ö±ðÊÇSVM,RF,XG£¡ÐÁ¿àÊ¦µÜÀ²~ 
+Diseaseinflist.csvä¸­å«æœ‰ç–¾ç—…åå­—å’ŒIDçš„å¯¹åº”ï¼›
+lncRNA-Geneæœ‰ä¸¤ä¸ªcsv,ä¸€ä¸ªå·²ç»è½¬æ¢æˆæƒ³è¦çš„0æˆ–è€…1çš„å½¢å¼ï¼Œå¦ä¸€ä¸ªæ˜¯åŽŸå§‹æ–‡ä»¶ï¼›
+lncRNA-GENE-Diseaseçš„ä¸‰ä¸ªæ•°æ®ç”¨deepwalkå…ˆå¾—åˆ°ç‰¹å¾ï¼Œ
+ç›®çš„æ˜¯è¦æ‰¾åˆ°lncRNA-GENE(PROTEIN)å…³è”ï¼Œ
+
