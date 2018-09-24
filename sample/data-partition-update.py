@@ -169,6 +169,7 @@ for train, test in skf.split(total_pairs,[x[2] for x in total_pairs]):
             item = [key] + adj_list[key]
             f.write('\t'.join([str(x) for x in item])+'\n')
 
+
     print("Deepwalk training...")
     os.system(("deepwalk --input " + data_partition_dir + "GLD_network_fold{}.txt "
               + "--number-walks 80 --representation-size 128 "
