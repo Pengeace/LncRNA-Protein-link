@@ -40,7 +40,7 @@ def update_adjacent_list(data_frame, name2index, adj_list):
         if item not in adj_list:
             adj_list[item] = []
         for key in adjs:
-            if adjs[key]:
+            if adjs[key] != 0:
                 adj_list[item].append(name2index[key])
 
     for c in columns:
@@ -49,7 +49,7 @@ def update_adjacent_list(data_frame, name2index, adj_list):
         if item not in adj_list:
             adj_list[item] = []
         for key in adjs:
-            if adjs[key]:
+            if adjs[key] != 0:
                 adj_list[item].append(name2index[key])
 
     return adj_list
@@ -79,7 +79,7 @@ for g in gl.index:
     for l in gl.columns:
         # print(g,l)
         total_pairs.append([name2index[g], name2index[l], int(gl.ix[g,l])])
-        if gl.ix[g,l]==1:
+        if gl.ix[g, l] != 0:
             positive_pairs.append([name2index[g], name2index[l], 1])
 
 gene_indexes = [name2index[x] for x in gl.index]
@@ -110,10 +110,11 @@ for key in base_adj_list:
 
 moved_pairs = []
 clusters = [x for x in range(len(parents)) if parents[x]<0]
+positive_pairs_reduced = deepcopy(positive_pairs)
 random.seed(random_seed)
-print("Clusters:",clusters)
+print("Clusters:", clusters)
 while len(clusters)>1:
-    random_pair = positive_pairs[random.randint(0, len(positive_pairs)-1)]
+    random_pair = positive_pairs_reduced[random.randint(0, len(positive_pairs_reduced) - 1)]
     x = find(random_pair[0], parents)
     y = find(random_pair[1], parents)
     if x!=y:
@@ -121,7 +122,7 @@ while len(clusters)>1:
 
         moved_pairs.append(random_pair)
         total_pairs.remove(random_pair)
-
+        positive_pairs_reduced.remove(random_pair)
 
         base_adj_list[random_pair[0]].append(random_pair[1])
         base_adj_list[random_pair[1]].append(random_pair[0])
@@ -131,11 +132,16 @@ while len(clusters)>1:
 
         parents[x] = y
 
+
     clusters = [x for x in range(len(parents)) if parents[x] < 0]
 
 with open(data_partition_dir + 'moved_pairs.txt', 'w') as f:
     for item in moved_pairs:
         f.write('\t'.join([str(x) for x in item]) + '\n')
+
+print(
+    "There are %d gene-lncRNA pairs moved into the global basic training pairs, accounting for %f%% in the total gene-lncRNA pairs." % (
+        len(moved_pairs), len(moved_pairs) * 1.0 / len(positive_pairs) * 100))
 
 ##############################
 
@@ -172,7 +178,8 @@ for train, test in skf.split(total_pairs,[x[2] for x in total_pairs]):
 
     print("Deepwalk training...")
     os.system(("deepwalk --input " + data_partition_dir + "GLD_network_fold{}.txt "
-              + "--number-walks 80 --representation-size 128 "
-              + "--walk-length 40 --window-size 10 --workers 8 --output " + data_partition_dir + "embeddings_fold{}.txt").format(cur_fold,cur_fold))
+               + "--number-walks 80 --representation-size 128 "
+               + "--walk-length 40 --window-size 10 --workers 10 --output " + data_partition_dir + "embeddings_fold{}.txt").format(
+        cur_fold, cur_fold))
 
     cur_fold += 1

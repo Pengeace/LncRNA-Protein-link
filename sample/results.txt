@@ -1,0 +1,4 @@
+# performance of Random Forest in 10-fold CV
+
+Acc, Sn, Sp, Pre, MCC, AUC:
+[0.99451092, 0.9876414 , 0.99727961, 0.99321335, 0.98658093, 0.99943164]

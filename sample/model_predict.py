@@ -1,11 +1,9 @@
-import pandas as pd
 import numpy as np
 from math import sqrt
 from sklearn.metrics import roc_curve, auc, confusion_matrix
-from sklearn.model_selection import StratifiedKFold
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-
+from sklearn.linear_model import LogisticRegression
 
 fold = 10
 gene_lncRNA_path = '../data/Gene-LncRNA.csv'
@@ -96,7 +94,7 @@ def calc_metrics(y_label, y_proba):
 performances = {}
 performances['RandomForest'] = []
 performances['SVM'] = []
-performances['xgboost'] = []
+performances['LR'] = []
 for cur_fold in range(fold):
     print("# Fold %d" % cur_fold)
     train, test = load_train_test_split(data_partition_dir+'partition_fold{}.txt'.format(cur_fold))
@@ -117,15 +115,20 @@ for cur_fold in range(fold):
     performances['RandomForest'].append(calc_metrics(y_test,rm.predict_proba(X_test)[:,1]))
     print("Performance of RF: {}".format(performances['RandomForest'][cur_fold]))
 
-    # svm = SVC(C=100,probability=True)
-    # svm.fit(X=X_train, y=y_train)
-    # performances['SVM'].append(calc_metrics(y_test, svm.predict_proba(X_test)[:,1]))
-    # print("Performance of SVM: {}".format(performances['SVM'][fold]))
+    svm = SVC(C=2, tol=1e-5, probability=True)
+    svm.fit(X=X_train, y=y_train)
+    performances['SVM'].append(calc_metrics(y_test, svm.predict_proba(X_test)[:, 1]))
+    print("Performance of SVM: {}".format(performances['SVM'][fold]))
 
+    lr = LogisticRegression(tol=1e-5, max_iter=500)
+    lr.fit(X=X_train, y=y_train)
+    performances['lr'].append(calc_metrics(y_test, lr.predict_proba(X_test)[:, 1]))
+    print("Performance of LR: {}".format(performances['LR'][fold]))
 
 print('Performance in {} fold:'.format(fold))
 print('RF:',np.mean(performances['RandomForest'],axis=0))
-# print('SVM:',np.mean(performances['SVM'],axis=0))
+print('SVM:', np.mean(performances['SVM'], axis=0))
+print('LR:', np.mean(performances['LR'], axis=0))
 
 # # Fold 0
 # Performance of RF: (0.9940703752828275, 0.9876425855513308, 0.9966611932129174, 0.9916825743114263, 0.9855061034217093, 0.9994716935329702)
@@ -148,5 +151,4 @@ print('RF:',np.mean(performances['RandomForest'],axis=0))
 # # Fold 9
 # Performance of RF: (0.9947721598002497, 0.9879125356512292, 0.9975368109912968, 0.9938516190736439, 0.9872189262512062, 0.9994137627257795)
 # Performance in 10 fold:
-# ('RF:', array([0.99451092, 0.9876414 , 0.99727961, 0.99321335, 0.98658093,
-#        0.99943164]))
+# ('RF:', array([0.99451092, 0.9876414 , 0.99727961, 0.99321335, 0.98658093, 0.99943164]))
