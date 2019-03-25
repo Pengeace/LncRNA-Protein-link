@@ -1,8 +1,9 @@
+import time
 import numpy as np
 from math import sqrt
 from sklearn.metrics import roc_curve, auc, confusion_matrix
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier, BaggingClassifier
+from sklearn.svm import SVC, LinearSVC
 from sklearn.linear_model import LogisticRegression
 
 fold = 10
@@ -12,8 +13,8 @@ data_partition_dir = '../data/data-partition/'
 
 
 def load_train_test_split(path):
-    train_test = [[],[]]
-    f = open(path,'r')
+    train_test = [[], []]
+    f = open(path, 'r')
     flag = 0
     for line in f.readlines():
         line = line.strip()
@@ -22,16 +23,17 @@ def load_train_test_split(path):
         elif 'Test' in line:
             flag = 1
         else:
-            gene, lncRNA, label = [ int(x) for x in line.split()]
+            gene, lncRNA, label = [int(x) for x in line.split()]
             train_test[flag].append([gene, lncRNA, label])
     return train_test[0], train_test[1]
+
 
 def load_embedding(path):
     head = False
     num = None
     dim = None
     embeddings = {}
-    with open(path,'r') as f:
+    with open(path, 'r') as f:
         for line in f:
             if head:
                 num, dim = [int(x) for x in line.strip().split()]
@@ -59,6 +61,7 @@ def read_index_file(path):
 
     return index2name, name2index, item_list
 
+
 def calc_metrics(y_label, y_proba):
     con_matrix = confusion_matrix(y_label, [1 if x >= 0.5 else 0 for x in y_proba])
     TN = float(con_matrix[0][0])
@@ -79,6 +82,7 @@ def calc_metrics(y_label, y_proba):
     AUC = auc(fpr, tpr)
     return Acc, Sn, Sp, Pre, MCC, AUC
 
+
 # index2name, name2index, item_list = read_index_file(item_index_path)
 # genes = [x[1] for x in item_list if x[2]=='gene']
 # lncRNAs = [x[1] for x in item_list if x[2]=='lncRNA']
@@ -86,7 +90,6 @@ def calc_metrics(y_label, y_proba):
 
 # gl = pd.read_csv(gene_lncRNA_path)
 # gl = gl.set_index("Name")
-
 
 
 # k-fold cross validation
@@ -97,36 +100,47 @@ performances['SVM'] = []
 performances['LR'] = []
 for cur_fold in range(fold):
     print("# Fold %d" % cur_fold)
-    train, test = load_train_test_split(data_partition_dir+'partition_fold{}.txt'.format(cur_fold))
+    train, test = load_train_test_split(data_partition_dir + 'partition_fold{}.txt'.format(cur_fold))
     embeddings, node_num, dim = load_embedding(data_partition_dir + "embeddings_fold{}.txt".format(cur_fold))
     X_train = []
     y_train = []
     X_test = []
     y_test = []
     for pair in train:
-        X_train.append(embeddings[pair[0]]+embeddings[pair[1]])
+        X_train.append(embeddings[pair[0]] + embeddings[pair[1]])
         y_train.append(pair[2])
     for pair in test:
-        X_test.append(embeddings[pair[0]]+embeddings[pair[1]])
+        X_test.append(embeddings[pair[0]] + embeddings[pair[1]])
         y_test.append(pair[2])
 
-    rm = RandomForestClassifier(100)
-    rm.fit(X=X_train,y=y_train)
-    performances['RandomForest'].append(calc_metrics(y_test,rm.predict_proba(X_test)[:,1]))
-    print("Performance of RF: {}".format(performances['RandomForest'][cur_fold]))
+    print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
 
-    svm = SVC(C=2, tol=1e-5, probability=True)
-    svm.fit(X=X_train, y=y_train)
-    performances['SVM'].append(calc_metrics(y_test, svm.predict_proba(X_test)[:, 1]))
-    print("Performance of SVM: {}".format(performances['SVM'][fold]))
+    start_rf = time.time()
+    rf = RandomForestClassifier(100, n_jobs=-1)
+    rf.fit(X=X_train, y=y_train)
+    performances['RandomForest'].append(calc_metrics(y_test, rf.predict_proba(X_test)[:, 1]))
+    end_rf = time.time()
+    print("Performance of RF: {}. Time: {}s.".format(performances['RandomForest'][cur_fold], end_rf - start_rf))
 
-    lr = LogisticRegression(tol=1e-5, max_iter=500)
+    start_lr = time.time()
+    lr = LogisticRegression(tol=1e-6, max_iter=2000, solver='lbfgs', n_jobs=-1)
     lr.fit(X=X_train, y=y_train)
-    performances['lr'].append(calc_metrics(y_test, lr.predict_proba(X_test)[:, 1]))
-    print("Performance of LR: {}".format(performances['LR'][fold]))
+    end_lr = time.time()
+    performances['LR'].append(calc_metrics(y_test, lr.predict_proba(X_test)[:, 1]))
+    print("Performance of LR: {}. Time: {}s.".format(performances['LR'][cur_fold], end_lr - start_lr))
+
+    start_svm = time.time()
+    # svm = SVC(C=2, probability=True)
+    # svm = BaggingClassifier(SVC(C=10, probability=True), max_samples=1.0 / 10, n_estimators=10, n_jobs=-1)
+    svm = LinearSVC(C=0.01, tol=1e-6, max_iter=2000)
+    svm.fit(X=X_train, y=y_train)
+    # performances['SVM'].append(calc_metrics(y_test, svm.predict_proba(X_test)[:, 1]))
+    performances['SVM'].append(calc_metrics(y_test, svm.predict(X_test)))
+    end_svm = time.time()
+    print("Performance of SVM: {}. Time: {}s.".format(performances['SVM'][cur_fold], end_svm - start_svm))
 
 print('Performance in {} fold:'.format(fold))
-print('RF:',np.mean(performances['RandomForest'],axis=0))
+print('RF:', np.mean(performances['RandomForest'], axis=0))
 print('SVM:', np.mean(performances['SVM'], axis=0))
 print('LR:', np.mean(performances['LR'], axis=0))
 

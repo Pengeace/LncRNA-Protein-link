@@ -1,44 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fce7763a-bc4e-42a5-854f-23f06327d6b6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/sample/results.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/LncRNA-Protein-link.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LncRNA-Protein-link.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fce7763a-bc4e-42a5-854f-23f06327d6b6" name="Default" comment="Check previous work.">
+      <change afterPath="$PROJECT_DIR$/sample/predict_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/GLD_network_fold9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/GLD_network_fold9.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/embeddings_fold9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/embeddings_fold9.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/moved_pairs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/moved_pairs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold0.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold6.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold7.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold8.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data-partition/partition_fold9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/data-partition/partition_fold9.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/data-partition-update.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/data-partition-update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/model_predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/model_predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample/model_predict.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,26 +23,27 @@
     <session id="-671276236">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.3" value="5" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.3" value="9" />
           <entry key="project.open.time.4" value="4" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="194" />
-          <entry key="py" value="287" />
-          <entry key="txt" value="50" />
+          <entry key="Python Console" value="235" />
+          <entry key="py" value="595" />
+          <entry key="txt" value="98" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="csv" value="3" />
-          <entry key="py" value="4" />
+          <entry key="py" value="7" />
           <entry key="txt" value="9" />
         </counts>
       </usages-collector>
@@ -84,15 +51,15 @@
         <counts>
           <entry key="CSV" value="3" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="4" />
+          <entry key="Python" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="481" />
+          <entry key="PLAIN_TEXT" value="98" />
+          <entry key="Python" value="830" />
         </counts>
       </usages-collector>
     </session>
@@ -100,10 +67,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sample/model_predict.py">
+        <entry file="file://$PROJECT_DIR$/sample/predict_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1276">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+            <state relative-caret-position="435">
+              <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files/Python36/Lib/site-packages/sklearn/svm/classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="172" column="8" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -145,6 +124,11 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Cheng Peng" />
+      </list>
+    </option>
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="PUSH_TAGS">
@@ -173,6 +157,7 @@
         <option value="$PROJECT_DIR$/sample/results.txt" />
         <option value="$PROJECT_DIR$/sample/data-partition-update.py" />
         <option value="$PROJECT_DIR$/sample/model_predict.py" />
+        <option value="$PROJECT_DIR$/sample/predict_model.py" />
       </list>
     </option>
   </component>
@@ -183,9 +168,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="184" />
-    <option name="width" value="1366" />
-    <option name="height" value="682" />
+    <option name="x" value="299" />
+    <option name="y" value="103" />
+    <option name="width" value="1743" />
+    <option name="height" value="793" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -203,15 +189,12 @@
             <path>
               <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
               <item name="LncRNA-Protein-link" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LncRNA-Protein-link" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
           </expand>
           <select />
@@ -221,7 +204,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MGRFE-GaRFE - local" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -242,7 +225,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.model_predict">
+  <component name="RunManager" selected="Python.predict_model">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -350,6 +333,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="predict_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="LncRNA-Protein-link" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sample" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample/predict_model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="remove_duplication (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="LncRNA-Protein-link" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -400,9 +402,11 @@
       <item itemvalue="Python.data-partition-update" />
       <item itemvalue="Python.remove_duplication" />
       <item itemvalue="Python.remove_duplication (1)" />
+      <item itemvalue="Python.predict_model" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.predict_model" />
         <item itemvalue="Python.create_index" />
         <item itemvalue="Python.data-partition-update" />
         <item itemvalue="Python.remove_duplication (1)" />
@@ -421,6 +425,14 @@
       <option name="presentableId" value="Default" />
       <updated>1535965115156</updated>
     </task>
+    <task id="LOCAL-00001" summary="Check previous work.">
+      <created>1553348872170</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1553348872170</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -434,8 +446,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17377399" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13272922" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -445,10 +458,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946696" weight="0.32899022" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4978678" weight="0.5130073" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49733475" weight="0.40062433" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5026652" side_tool="true" weight="0.31813246" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49520257" weight="0.4287201" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49733475" weight="0.5130073" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4968017" weight="0.40062433" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.09221748" side_tool="true" visible="true" weight="0.37565038" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.9077825" visible="true" weight="0.37565038" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -456,7 +469,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" side_tool="true" visible="true" weight="0.0031982942" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" side_tool="true" visible="true" weight="0.0026652452" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="SciView" order="7" />
     </layout>
@@ -485,6 +498,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Check previous work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Check previous work." />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data/LncRNA-Gene.csv" />
@@ -522,11 +540,9 @@
     <entry file="file://$PROJECT_DIR$/data/remove_duplication.py" />
     <entry file="file://$PROJECT_DIR$/data/Disease-LncRNA.csv">
       <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/Disease-Gene.csv">
       <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/data/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -574,29 +590,11 @@
           <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="29">
-          <caret line="1" column="20" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/sklearn/svm/classes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3683">
-          <caret line="119" column="21" lean-forward="true" selection-start-line="119" selection-start-column="21" selection-end-line="119" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/data-partition-update.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-116">
           <caret line="152" column="34" selection-start-line="152" selection-start-column="34" selection-end-line="152" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -607,12 +605,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample/model_predict.py">
+    <entry file="file://C:/Python27/Lib/site-packages/sklearn/linear_model/logistic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1276">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+        <state relative-caret-position="29551">
+          <caret line="1043" column="34" selection-start-line="1043" selection-start-column="27" selection-end-line="1043" selection-end-column="34" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sample/model_predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="128" lean-forward="true" selection-end-line="168" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/sklearn/svm/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="172" column="8" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/predict_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
