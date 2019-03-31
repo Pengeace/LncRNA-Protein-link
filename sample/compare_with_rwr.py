@@ -1,12 +1,13 @@
 import time
+from copy import deepcopy
+from operator import itemgetter
+
 import numpy as np
 import pandas as pd
 from RWR import RWR
-from copy import deepcopy
-from operator import itemgetter
 from matplotlib import pyplot as plt
-from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import roc_curve, auc
 
 data_fold_num = 0  # the data partition to be tested
 gene_lncRNA_path = '../data/Gene-LncRNA.csv'
@@ -177,7 +178,7 @@ for pair in test_v1:
         W[:, gene] = gene_column_tmp
 
 end_rwr = time.time()
-performances['RWR'].append(calc_auc([x[2] for x in test_v1], y_probas_rwr))
+performances['RWR'] = calc_auc([x[2] for x in test_v1], y_probas_rwr)
 print("Performance of RWR: {}. Time: {}s.".format(performances['RWR'], end_rwr - start_rwr))
 
 
@@ -191,10 +192,12 @@ for pair in test_v1:
     y_test.append(pair[2])
 print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
 start_rf = time.time()
-rf = RandomForestClassifier(100, n_jobs=-1)
+# for i in range(1, 20):
+rf = RandomForestClassifier(100, n_jobs=-1, random_state=17)
 rf.fit(X=X_train, y=y_train)
 y_probas_rf = rf.predict_proba(X_test)[:, 1]
-performances['DeepWalk-RandomForest'].append(calc_auc(y_test, y_probas_rf))
+performances['DeepWalk-RandomForest'] = calc_auc(y_test, y_probas_rf)
+# print("Random state: {}, performance: {}".format(i, performances['DeepWalk-RandomForest']))
 end_rf = time.time()
 print("Performance of RF: {}. Time: {}s.".format(performances['DeepWalk-RandomForest'], end_rf - start_rf))
 
@@ -218,6 +221,26 @@ plt.legend(loc="lower right")
 plt.savefig('../result/ROC-AUC-1.pdf')
 plt.show()
 plt.close()
+
+# Random state: 1, performance: 0.9997776502323318
+# Random state: 2, performance: 0.9997061883623254
+# Random state: 3, performance: 0.9996385469095204
+# Random state: 4, performance: 0.9997722912424442
+# Random state: 5, performance: 0.9997085816976151
+# Random state: 6, performance: 0.9997696972237607
+# Random state: 7, performance: 0.9996519332351619
+# Random state: 8, performance: 0.9997457713035828
+# Random state: 9, performance: 0.9997772488655442
+# Random state: 10, performance: 0.9997629594646302
+# Random state: 11, performance: 0.9997764907282785
+# Random state: 12, performance: 0.9997810507009498
+# Random state: 13, performance: 0.9997824629174252
+# Random state: 14, performance: 0.9997765464736658
+# Random state: 15, performance: 0.9997370415759503
+# Random state: 16, performance: 0.9997078272767084
+# Random state: 17, performance: 0.9998132083566349
+# Random state: 18, performance: 0.9996729455297699
+# Random state: 19, performance: 0.9997710648439263
 
 # Performance of RWR: 0.9959854067495623. Time: 144.68404984474182s.
 # Performance of RF: [0.99983904448541361]. Time: 26.475212574005127s.
@@ -273,7 +296,7 @@ for pair in test_v2:
     y_probas_rwr.append(pos * 1.0 / len(gene_score))
 
 end_rwr = time.time()
-performances['RWR'].append(calc_auc([x[2] for x in test_v2], y_probas_rwr))
+performances['RWR'] = calc_auc([x[2] for x in test_v2], y_probas_rwr)
 print("Performance of RWR: {}. Time: {}s.".format(performances['RWR'], end_rwr - start_rwr))
 
 # Random forest prediction
@@ -285,10 +308,10 @@ for pair in test_v2:
     y_test.append(pair[2])
 print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
 start_rf = time.time()
-rf = RandomForestClassifier(100, n_jobs=-1)
+rf = RandomForestClassifier(100, n_jobs=-1, random_state=17)
 rf.fit(X=X_train, y=y_train)
 y_probas_rf = rf.predict_proba(X_test)[:, 1]
-performances['DeepWalk-RandomForest'].append(calc_auc(y_test, y_probas_rf))
+performances['DeepWalk-RandomForest'] = calc_auc(y_test, y_probas_rf)
 end_rf = time.time()
 print("Performance of RF: {}. Time: {}s.".format(performances['DeepWalk-RandomForest'], end_rf - start_rf))
 

@@ -117,7 +117,7 @@ for cur_fold in range(fold):
     print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
 
     start_rf = time.time()
-    rf = RandomForestClassifier(100, n_jobs=-1)
+    rf = RandomForestClassifier(100, n_jobs=-1, random_state=17)
     rf.fit(X=X_train, y=y_train)
     performances['RandomForest'].append(calc_metrics(y_test, rf.predict_proba(X_test)[:, 1]))
     end_rf = time.time()
