@@ -14,7 +14,7 @@ disease_gene_path = '../data/Disease-Gene.csv'
 disease_lncRNA_path = '../data/Disease-LncRNA.csv'
 item_index_path = '../data/item_index.txt'
 data_partition_dir = '../data/data-partition/'
-
+full_network_matrix_path = '../data/full-matrix.csv'
 
 def read_index_file(path):
     index2name = {}
@@ -63,7 +63,7 @@ dl['Name'] = dl['Name'].astype(str)
 
 
 index2name, name2index, item_list = read_index_file(item_index_path)
-
+item_num = len(item_list)
 
 base_adj_list = {}
 for data in [dl, dg]:
@@ -88,7 +88,6 @@ disease_indexes = [name2index[x] for x in dl['Name']]
 
 # Create the minimal linked network
 #############################
-
 def find(x, parents):
     if parents[x]<0:
         return x
@@ -143,43 +142,69 @@ print(
     "There are %d gene-lncRNA pairs moved into the global basic training pairs, accounting for %f%% in the total gene-lncRNA pairs." % (
         len(moved_pairs), len(moved_pairs) * 1.0 / len(positive_pairs) * 100))
 
+# k-fold cross validation data-set partition
 ##############################
-
-# k-fold cross validation
 skf = StratifiedKFold(n_splits=fold, shuffle=True, random_state=random_seed)
 cur_fold = 0
 total_pairs = np.array(total_pairs)
-for train, test in skf.split(total_pairs,[x[2] for x in total_pairs]):
+for train, test in skf.split(total_pairs, [x[2] for x in total_pairs]):
     print('# fold %d' % cur_fold)
     pairs_train = total_pairs[train]
     pairs_test = total_pairs[test]
 
-    print("# Writing data-partition pattern...")
-    with open(data_partition_dir+'partition_fold{}.txt'.format(cur_fold),'w') as f:
+    print("# Writing data-partition pattern ...")
+    with open(data_partition_dir + 'partition_fold{}.txt'.format(cur_fold), 'w') as f:
         f.write("# Train set\t%d\n" % (len(pairs_train)))
         for item in pairs_train:
-            f.write('\t'.join([str(x) for x in item])+'\n')
+            f.write('\t'.join([str(x) for x in item]) + '\n')
         f.write('# Test set\t%d\n' % (len(pairs_test)))
         for item in pairs_test:
-            f.write('\t'.join([str(x) for x in item])+'\n')
-
+            f.write('\t'.join([str(x) for x in item]) + '\n')
 
     adj_list = deepcopy(base_adj_list)
     for [gene, lncRNA, label] in pairs_train:
         if label:
             adj_list[gene].append(lncRNA)
             adj_list[lncRNA].append(gene)
-    print('# Creating network data...')
-    with open(data_partition_dir+'GLD_network_fold{}.txt'.format(cur_fold),'w') as f:
+    print('# Creating linked network data ...')
+    with open(data_partition_dir + 'GLD_network_fold{}.txt'.format(cur_fold), 'w') as f:
         for key in adj_list:
             item = [key] + adj_list[key]
-            f.write('\t'.join([str(x) for x in item])+'\n')
+            f.write('\t'.join([str(x) for x in item]) + '\n')
 
-
-    print("Deepwalk training...")
+    print("Deepwalk training ...")
     os.system(("deepwalk --input " + data_partition_dir + "GLD_network_fold{}.txt "
                + "--number-walks 80 --representation-size 128 "
                + "--walk-length 40 --window-size 10 --workers 10 --output " + data_partition_dir + "embeddings_fold{}.txt").format(
         cur_fold, cur_fold))
 
     cur_fold += 1
+
+# total data-set embedding
+##############################
+full_adj_list = deepcopy(base_adj_list)
+for [gene, lncRNA, label] in positive_pairs:
+    full_adj_list[gene].append(lncRNA)
+    full_adj_list[lncRNA].append(gene)
+print('# Creating total linked network data ...')
+with open(data_partition_dir + 'GLD_network_full.txt', 'w') as f:
+    for key in full_adj_list:
+        item = [key] + full_adj_list[key]
+        f.write('\t'.join([str(x) for x in item]) + '\n')
+
+print("Deepwalk training ...")
+os.system(("deepwalk --input " + data_partition_dir + "GLD_network_full.txt "
+           + "--number-walks 80 --representation-size 128 "
+           + "--walk-length 40 --window-size 10 --workers 10 --output " + data_partition_dir + "embeddings_full.txt"))
+
+# create full network matrix
+##############################
+data_matrix = np.zeros([item_num, item_num])
+print('# Creating full network matrix data ...')
+for key in full_adj_list:
+    for val in full_adj_list[key]:
+        data_matrix[key, val] = 1
+
+full_dataframe = pd.DataFrame(data=data_matrix, index=list(range(0, item_num)), columns=list(range(0, item_num)),
+                              dtype=int)
+full_dataframe.to_csv(full_network_matrix_path)
