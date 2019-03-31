@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fce7763a-bc4e-42a5-854f-23f06327d6b6" name="Default" comment="Update prediction models.">
-      <change afterPath="$PROJECT_DIR$/sample/RWR.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample/compare_with_rwr.py" afterDir="false" />
+    <list default="true" id="fce7763a-bc4e-42a5-854f-23f06327d6b6" name="Default" comment="Add simple comparison with RWR.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/create_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/create_index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/data-partition-update.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/data-partition-update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/remove_duplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/remove_duplication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample/RWR.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/RWR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample/compare_with_rwr.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample/compare_with_rwr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,13 +35,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="447" />
-          <entry key="compare_with_rwr" value="592" />
+          <entry key="Python Console" value="462" />
+          <entry key="compare_with_rwr" value="635" />
           <entry key="csv" value="9" />
           <entry key="dummy" value="7" />
           <entry key="predict_model" value="132" />
-          <entry key="py" value="3926" />
-          <entry key="txt" value="123" />
+          <entry key="py" value="4368" />
+          <entry key="txt" value="154" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -66,8 +63,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="9" />
-          <entry key="PLAIN_TEXT" value="130" />
-          <entry key="Python" value="5097" />
+          <entry key="PLAIN_TEXT" value="161" />
+          <entry key="Python" value="5597" />
         </counts>
       </usages-collector>
     </session>
@@ -89,12 +86,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample/RWR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="174">
+              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1553997643460" expanded="true" signature="60:61" ph="..." />
-                <marker date="1553997643460" expanded="true" signature="60:66" ph="..." />
+                <marker date="1554003028813" expanded="true" signature="61:62" ph="..." />
+                <marker date="1554003028813" expanded="true" signature="61:67" ph="..." />
               </folding>
             </state>
           </provider>
@@ -104,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/sample/data-partition-update.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
-              <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
+              <caret line="199" selection-start-line="199" selection-end-line="199" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -133,7 +130,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample/remove_duplication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="1016">
               <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
             </state>
           </provider>
@@ -142,8 +139,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample/compare_with_rwr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
+            <state relative-caret-position="-281">
+              <caret line="228" selection-start-line="228" selection-end-line="228" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -253,16 +250,6 @@
             <path>
               <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
               <item name="LncRNA-Protein-link" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LncRNA-Protein-link" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LncRNA-Protein-link" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LncRNA-Protein-link" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -504,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1553484011494</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add simple comparison with RWR.">
+      <created>1553997893239</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1553997893239</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -517,7 +511,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1391258" />
@@ -533,7 +527,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4968017" weight="0.5130073" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49626866" weight="0.40062433" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.09328358" side_tool="true" weight="0.18002081" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.9056503" visible="true" weight="0.31841832" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.9056503" visible="true" weight="0.38085327" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -541,9 +535,9 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="R Packages" order="4" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" side_tool="true" visible="true" weight="0.0026652452" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" sideWeight="0.090756305" side_tool="true" visible="true" weight="0.5490405" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="SciView" order="7" />
+      <window_info active="true" anchor="right" id="SciView" order="7" sideWeight="0.9092437" visible="true" weight="0.5490405" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" weight="0.22021116" />
@@ -574,7 +568,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Check previous work." />
     <MESSAGE value="Update prediction models." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update prediction models." />
+    <MESSAGE value="Add simple comparison with RWR." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add simple comparison with RWR." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -700,6 +695,16 @@
     <entry file="file://$PROJECT_DIR$/data/full-matrix.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/sample/data-partition-update.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="199" selection-start-line="199" selection-end-line="199" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sample/predict_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1183">
@@ -710,39 +715,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample/data-partition-update.py">
+    <entry file="file://$PROJECT_DIR$/sample/RWR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
+        <state relative-caret-position="174">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1554003028813" expanded="true" signature="61:62" ph="..." />
+            <marker date="1554003028813" expanded="true" signature="61:67" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/remove_duplication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="1016">
           <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample/RWR.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1553997643460" expanded="true" signature="60:61" ph="..." />
-            <marker date="1553997643460" expanded="true" signature="60:66" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/compare_with_rwr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="176" lean-forward="true" selection-start-line="176" selection-end-line="176" />
+        <state relative-caret-position="-281">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

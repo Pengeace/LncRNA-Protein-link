@@ -4,6 +4,7 @@ import pandas as pd
 from RWR import RWR
 from copy import deepcopy
 from operator import itemgetter
+from matplotlib import pyplot as plt
 from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 
@@ -116,17 +117,21 @@ y_train = []
 X_test = []
 y_test = []
 
+# RWR with full network
+#####################################
+print("Full network data:")
 # RWR prediction
-y_probas_rwr = []
 print("RWR prediction ...")
 W = deepcopy(full_network_matrix.values)
 sum_column = W.sum(axis=0)
 W = W / sum_column
 lncRNA_column_tmp = []
 gene_column_tmp = []
+y_probas_rwr = []
+test_v1 = deepcopy(test)
 i = 0
 start_rwr = time.time()
-for pair in test:
+for pair in test_v1:
     i += 1
     if i % 500 == 0:
         print("processing test pair %d" % (i))
@@ -151,7 +156,8 @@ for pair in test:
         W[:, gene] = gene_column_cur
 
     if len(seeds) == 0:
-        test.remove(i)
+        test_v1.remove(i)
+        continue
 
     rwr = RWR(W=W, seeds=seeds)
     p = rwr.compute()
@@ -171,27 +177,142 @@ for pair in test:
         W[:, gene] = gene_column_tmp
 
 end_rwr = time.time()
-performances['RWR'].append(calc_auc([x[2] for x in test], y_probas_rwr))
+performances['RWR'].append(calc_auc([x[2] for x in test_v1], y_probas_rwr))
 print("Performance of RWR: {}. Time: {}s.".format(performances['RWR'], end_rwr - start_rwr))
 
+
 # Random forest prediction
+print("RF prediction ...")
 for pair in train:
     X_train.append(embeddings[pair[0]] + embeddings[pair[1]])
     y_train.append(pair[2])
-for pair in test:
+for pair in test_v1:
     X_test.append(embeddings[pair[0]] + embeddings[pair[1]])
     y_test.append(pair[2])
 print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
 start_rf = time.time()
-rf = RandomForestClassifier(200, n_jobs=-1)
+rf = RandomForestClassifier(100, n_jobs=-1)
 rf.fit(X=X_train, y=y_train)
 y_probas_rf = rf.predict_proba(X_test)[:, 1]
 performances['DeepWalk-RandomForest'].append(calc_auc(y_test, y_probas_rf))
 end_rf = time.time()
 print("Performance of RF: {}. Time: {}s.".format(performances['DeepWalk-RandomForest'], end_rf - start_rf))
 
-# print('Performance in {} fold:'.format(fold))
-# print('RF:', np.mean(performances['DeepWalk-RandomForest'], axis=0))
+# ROC DeepWalk-RF
+fpr, tpr, thresholds = roc_curve(y_test, y_probas_rf)
+roc_auc = auc(fpr, tpr)
+plt.plot(fpr, tpr, lw=1, alpha=0.8, label='ROC of %s (AUC = %0.5f)' % ("DeepWalk-RF", roc_auc))
+
+# ROC RWR
+fpr, tpr, thresholds = roc_curve(y_test, y_probas_rwr)
+roc_auc = auc(fpr, tpr)
+plt.plot(fpr, tpr, lw=1, alpha=0.8, label='ROC of %s (AUC = %0.5f)' % ("RWR", roc_auc))
+
+plt.plot([0, 1], [0, 1], linestyle='--', lw=1, label='Luck', alpha=.8)
+plt.xlim([-0.05, 1.05])
+plt.ylim([-0.05, 1.05])
+plt.xlabel('False Positive Rate', fontsize=14)
+plt.ylabel('True Positive Rate', fontsize=14)
+plt.title('ROC and AUC comparison', fontsize=16)
+plt.legend(loc="lower right")
+plt.savefig('../result/ROC-AUC-1.pdf')
+plt.show()
+plt.close()
 
 # Performance of RWR: 0.9959854067495623. Time: 144.68404984474182s.
 # Performance of RF: [0.99983904448541361]. Time: 26.475212574005127s.
+#####################################
+
+
+# RWR with reduced network
+#####################################
+print("Reduced network data:")
+# RWR prediction
+print("RWR prediction ...")
+W = deepcopy(full_network_matrix.values)
+for gene, lncRNA, label in test:
+    if label:
+        W[gene, lncRNA] = 0
+        W[lncRNA, gene] = 0
+sum_column = W.sum(axis=0)
+for i in range(len(sum_column)):
+    if sum_column[i] == 0:
+        sum_column[i] = 1
+W = W / sum_column
+
+y_probas_rwr = []
+test_v2 = deepcopy(test)
+i = 0
+start_rwr = time.time()
+for pair in test_v2:
+    i += 1
+    if i % 500 == 0:
+        print("processing test pair %d" % (i))
+    gene, lncRNA, label = pair
+    lncRNA_interacted_gene_num = len(gl_pos_adj_list[lncRNA])
+    seeds = set(gl_pos_adj_list[lncRNA])
+    if label:
+        lncRNA_interacted_gene_num -= 1
+        seeds.remove(gene)
+
+    if len(seeds) == 0:
+        test_v2.remove(i)
+        continue
+
+    rwr = RWR(W=W, seeds=seeds)
+    p = rwr.compute()
+    gene_score = []
+    for gene_item in gene_list:
+        if gene_item not in gl_pos_adj_list[lncRNA]:
+            gene_score.append((gene_item, p[gene_item]))
+    if label:
+        gene_score.append((gene, p[gene]))
+    cur_gene_score_pair = (gene, p[gene])
+    gene_score = sorted(gene_score, key=itemgetter(1))
+    pos = gene_score.index(cur_gene_score_pair)
+    y_probas_rwr.append(pos * 1.0 / len(gene_score))
+
+end_rwr = time.time()
+performances['RWR'].append(calc_auc([x[2] for x in test_v2], y_probas_rwr))
+print("Performance of RWR: {}. Time: {}s.".format(performances['RWR'], end_rwr - start_rwr))
+
+# Random forest prediction
+X_test = []
+y_test = []
+print("RF prediction ...")
+for pair in test_v2:
+    X_test.append(embeddings[pair[0]] + embeddings[pair[1]])
+    y_test.append(pair[2])
+print("There are {} train samples and {} test samples.".format(len(X_train), len(X_test)))
+start_rf = time.time()
+rf = RandomForestClassifier(100, n_jobs=-1)
+rf.fit(X=X_train, y=y_train)
+y_probas_rf = rf.predict_proba(X_test)[:, 1]
+performances['DeepWalk-RandomForest'].append(calc_auc(y_test, y_probas_rf))
+end_rf = time.time()
+print("Performance of RF: {}. Time: {}s.".format(performances['DeepWalk-RandomForest'], end_rf - start_rf))
+
+# ROC DeepWalk-RF
+fpr, tpr, thresholds = roc_curve(y_test, y_probas_rf)
+roc_auc = auc(fpr, tpr)
+plt.plot(fpr, tpr, lw=1, alpha=0.8, label='ROC of %s (AUC = %0.5f)' % ("DeepWalk-RF", roc_auc))
+
+# ROC RWR
+fpr, tpr, thresholds = roc_curve(y_test, y_probas_rwr)
+roc_auc = auc(fpr, tpr)
+plt.plot(fpr, tpr, lw=1, alpha=0.8, label='ROC of %s (AUC = %0.5f)' % ("RWR", roc_auc))
+
+plt.plot([0, 1], [0, 1], linestyle='--', lw=1, label='Luck', alpha=.8)
+plt.xlim([-0.05, 1.05])
+plt.ylim([-0.05, 1.05])
+plt.xlabel('False Positive Rate', fontsize=14)
+plt.ylabel('True Positive Rate', fontsize=14)
+plt.title('ROC and AUC comparison', fontsize=16)
+plt.legend(loc="lower right")
+plt.savefig('../result/ROC-AUC-2.pdf')
+plt.show()
+plt.close()
+
+# Performance of RWR: [0.99750938529338584]. Time: 146.42518210411072s.
+# Performance of RF: [0.9997800658657765]. Time: 28.522676467895508s.
+#####################################

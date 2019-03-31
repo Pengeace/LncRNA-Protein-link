@@ -4,7 +4,7 @@ from numpy.linalg import norm
 
 class RWR:
 
-    def __init__(self, W, seeds, r=0.15, max_iter=2000, epsilon=1e-7):
+    def __init__(self, W, seeds, r=0.5, max_iter=2000, epsilon=1e-7):
         """
         Using the below iteration to computer p until the L1 norm between p^{n} and p^{n+1} is less than epsilon.
         p^{n+1} = (1-r)Wp^{n} + rp^{0}.
